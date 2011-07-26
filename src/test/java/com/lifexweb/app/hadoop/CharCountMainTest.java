@@ -11,13 +11,13 @@ public class CharCountMainTest {
 
 	private CharCountMapper mapper;
 	private CharCountReducer reducer;
-	private MapReduceDriver<LongWritable, Text, Text, IntWritable, Text, IntWritable > driver;
+	private MapReduceDriver<LongWritable, Text, LineWritable, IntWritable, Text, IntWritable > driver;
 	
 	@Before
 	public void setUp() throws Exception {
 		mapper = new CharCountMapper();
 		reducer = new CharCountReducer();
-		driver = new MapReduceDriver<LongWritable, Text, Text, IntWritable, Text, IntWritable > (mapper, reducer);
+		driver = new MapReduceDriver<LongWritable, Text, LineWritable, IntWritable, Text, IntWritable > (mapper, reducer);
 	}
 
 	@Test

@@ -29,13 +29,13 @@ public class CharCountMain {
 		job.setJarByClass(CharCountMain.class);
 		
 		job.setMapperClass(CharCountMapper.class);
-		job.setCombinerClass(CharCountReducer.class);
+//		job.setCombinerClass(CharCountReducer.class);
 		job.setReducerClass(CharCountReducer.class);
 		
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 		
-		job.setMapOutputKeyClass(Text.class);
+		job.setMapOutputKeyClass(LineWritable.class);
 		job.setMapOutputValueClass(IntWritable.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
