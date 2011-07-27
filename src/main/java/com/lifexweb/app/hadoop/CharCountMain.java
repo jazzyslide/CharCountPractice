@@ -29,6 +29,7 @@ public class CharCountMain {
 		job.setJarByClass(CharCountMain.class);
 		
 		job.setMapperClass(CharCountMapper.class);
+		job.setCombinerClass(CharCountReducer.class);
 		job.setReducerClass(CharCountReducer.class);
 		
 		job.setInputFormatClass(TextInputFormat.class);
