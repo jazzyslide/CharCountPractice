@@ -30,6 +30,7 @@ public class CharCountMain {
 		
 		job.setMapperClass(CharCountMapper.class);
 		job.setCombinerClass(CharCountReducer.class);
+		job.setPartitionerClass(CharCountPartitioner.class);
 		job.setReducerClass(CharCountReducer.class);
 		
 		job.setInputFormatClass(TextInputFormat.class);
@@ -40,7 +41,7 @@ public class CharCountMain {
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 		
-		job.setNumReduceTasks(1);
+		job.setNumReduceTasks(3);
 		
 		FileInputFormat.setInputPaths(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
