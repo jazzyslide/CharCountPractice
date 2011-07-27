@@ -20,10 +20,11 @@ public class CharCountMapper extends Mapper<LongWritable, Text, LineWritable, In
 		char[] letters = line.toCharArray();
 		valueText.clear();
 		
-		if (letters.length == 0) {
-			keyLine.set(offset, valueText);
-			context.write(keyLine, ONE);
-		} else {
+		//行番号をReducer側で1からふる場合の空白行対応
+//		if (letters.length == 0) {
+//			keyLine.set(offset, valueText);
+//			context.write(keyLine, ONE);
+//		} else {
 			for (Character letter : letters){
 				if (!Character.isWhitespace(letter)){
 					valueText.set(letter.toString());
@@ -31,6 +32,6 @@ public class CharCountMapper extends Mapper<LongWritable, Text, LineWritable, In
 					context.write(keyLine, ONE);
 				}				
 			}
-		}
+//		}
 	}
 }
