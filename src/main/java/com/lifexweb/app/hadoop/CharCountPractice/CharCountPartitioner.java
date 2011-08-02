@@ -1,4 +1,4 @@
-package com.lifexweb.app.hadoop;
+package com.lifexweb.app.hadoop.CharCountPractice;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Partitioner;

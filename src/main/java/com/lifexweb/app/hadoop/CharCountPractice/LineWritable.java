@@ -1,4 +1,4 @@
-package com.lifexweb.app.hadoop;
+package com.lifexweb.app.hadoop.CharCountPractice;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -6,31 +6,30 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 
 public class LineWritable implements WritableComparable<LineWritable> {
 
 	private IntWritable fileCode;
 	private LongWritable offset;
-	private Text text;
+	private IntWritable codePoint;
 	
 	public LineWritable() {
-		set(new IntWritable(), new LongWritable(), new Text());
+		set(new IntWritable(), new LongWritable(), new IntWritable());
 	}
 	
-	public LineWritable(int fileCode, long offset, String text) {
-		set(new IntWritable(fileCode), new LongWritable(offset), new Text(text));
+	public LineWritable(int fileCode, long offset, int codePoint) {
+		set(new IntWritable(fileCode), new LongWritable(offset), new IntWritable(codePoint));
 	}
 	
-	public LineWritable(IntWritable fileCode, LongWritable offset, Text text) {
-		set(fileCode, offset, text);
+	public LineWritable(IntWritable fileCode, LongWritable offset, IntWritable codePoint) {
+		set(fileCode, offset, codePoint);
 	}
 	
-	public void set(IntWritable fileCode, LongWritable offset, Text text) {
+	public void set(IntWritable fileCode, LongWritable offset, IntWritable codePoint) {
 		this.fileCode = fileCode;
 		this.offset = offset;
-		this.text = text;
+		this.codePoint = codePoint;
 	}
 	
 	public IntWritable getFileCode() {
@@ -41,29 +40,29 @@ public class LineWritable implements WritableComparable<LineWritable> {
 		return offset;
 	}
 
-	public Text getText() {
-		return text;
+	public IntWritable getCodePoint() {
+		return codePoint;
 	}
 
 	@Override
 	public String toString() {
-		return fileCode.toString() + "\t" + offset.get() + "\t" + text.toString();
+		return fileCode.toString() + "\t" + offset.get() + "\t" + codePoint.toString();
 	}
 	
 	public void readFields(DataInput in) throws IOException {
 		fileCode.readFields(in);
 		offset.readFields(in);
-		text.readFields(in);
+		codePoint.readFields(in);
 	}
 
 	public void write(DataOutput out) throws IOException {
 		fileCode.write(out);
 		offset.write(out);
-		text.write(out);
+		codePoint.write(out);
 	}
 	
 	public int hashCode() {
-		return fileCode.hashCode() * 263 + offset.hashCode() * 163 + text.hashCode();
+		return fileCode.hashCode() * 263 + offset.hashCode() * 163 + codePoint.hashCode();
 	}
 
 	public int compareTo(LineWritable cmpLine) {
@@ -75,7 +74,7 @@ public class LineWritable implements WritableComparable<LineWritable> {
 			if (cmp2 != 0) {
 				return cmp2;
 			}
-			return text.compareTo(cmpLine.text);
+			return codePoint.compareTo(cmpLine.codePoint);
 		}
 	}
 

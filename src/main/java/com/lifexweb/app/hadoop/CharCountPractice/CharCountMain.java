@@ -1,4 +1,4 @@
-package com.lifexweb.app.hadoop;
+package com.lifexweb.app.hadoop.CharCountPractice;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class CharCountMain {
 		job.setJarByClass(CharCountMain.class);
 		
 		job.setMapperClass(CharCountMapper.class);
-		job.setCombinerClass(CharCountReducer.class);
+		job.setCombinerClass(CharCountCombiner.class);
 		job.setPartitionerClass(CharCountPartitioner.class);
 		job.setReducerClass(CharCountReducer.class);
 		
