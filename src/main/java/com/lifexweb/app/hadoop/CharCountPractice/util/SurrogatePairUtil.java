@@ -1,4 +1,4 @@
-package com.lifexweb.app.hadoop.CharCountPractice.utl;
+package com.lifexweb.app.hadoop.CharCountPractice.util;
 
 public class SurrogatePairUtil {
 
