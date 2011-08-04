@@ -8,7 +8,7 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-import com.lifexweb.app.hadoop.CharCountPractice.utl.SurrogatePairUtil;
+import com.lifexweb.app.hadoop.CharCountPractice.util.SurrogatePairUtil;
 
 public class CharCountMapper extends Mapper<LongWritable, Text, LineWritable, IntWritable> {
 
@@ -24,7 +24,7 @@ public class CharCountMapper extends Mapper<LongWritable, Text, LineWritable, In
 		//文字列の正規化
 		line = Normalizer.normalize(line, Normalizer.Form.NFC);
 		//空白文字を削除
-		line.replaceAll("\\s", line);
+		line = line.replaceAll("\\s", "");
 		int[] codePoints = SurrogatePairUtil.toCodePointArray(line);
 		valueCode.set(0);
 		
