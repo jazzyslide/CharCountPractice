@@ -1,15 +1,13 @@
-package com.lifexweb.app.hadoop.CharCountPractice;
+package com.lifexweb.app.hadoop.CharCountPractice.Normal;
 
 import java.io.IOException;
 
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class CharCountReducer extends
-		Reducer<LineWritable, IntWritable, Text, IntWritable> {
+public class CharCountCombiner extends
+		Reducer<LineWritable, IntWritable, LineWritable, IntWritable> {
 	
-	private Text resultKey = new Text();
 	private IntWritable resultValue = new IntWritable();
 	
 	@Override
@@ -20,10 +18,8 @@ public class CharCountReducer extends
 		for (IntWritable c : counts) {
 			count += c.get();
 		}
-		String tmpStr = String.valueOf(Character.toChars(key.getCodePoint().get()));
-		resultKey.set(key.getFileCode() + "\t" + key.getOffset() + "\t" + tmpStr);
 		resultValue.set(count);
-		context.write(resultKey, resultValue);
+		context.write(key, resultValue);
 
 	}
 

@@ -1,4 +1,4 @@
-package com.lifexweb.app.hadoop.CharCountPractice;
+package com.lifexweb.app.hadoop.CharCountPractice.Normal;
 
 import java.io.IOException;
 
