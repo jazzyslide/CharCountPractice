@@ -39,10 +39,10 @@ public class CharCountMapper extends Mapper<LongWritable, Text, Text, Text> {
 		Collections.sort(letterList);
 		
 		int count = 0;
-		int roopCount = 0;
+		int loopCount = 0;
 		tmpStr = "";
 		for (String letter : letterList) {
-			roopCount++;			
+			loopCount++;			
 			if (tmpStr.isEmpty()) {
 				tmpStr = letter;
 				count++;			
@@ -54,7 +54,7 @@ public class CharCountMapper extends Mapper<LongWritable, Text, Text, Text> {
 			} else {
 				count++;
 			}
-			if (roopCount == letterList.size()) {
+			if (loopCount == letterList.size()) {
 				valueText.set(tmpStr + "\t" + count);
 				context.write(keyText, valueText);
 			}
